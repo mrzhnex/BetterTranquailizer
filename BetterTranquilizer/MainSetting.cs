@@ -36,7 +36,6 @@ namespace BetterTranquilizer
             Events.SetClassEvent -= setEvents.OnSetClass;
             Events.WaitingForPlayersEvent -= setEvents.OnWaitingForPlayers;
             Log.Info(getName + " off");
-            //man hello
         }
 
         public override void OnReload() { }
