@@ -76,12 +76,12 @@
   <ItemGroup>
     <Compile Include="BadgeComponent.cs" />
     <Compile Include="Global.cs" />
-    <Compile Include="MainSetting.cs" />
+    <Compile Include="MainSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SetEvents.cs" />
     <Compile Include="SleepTime.cs" />
-    <Compile Include="tranqillMaster.cs" />
-    <Compile Include="tranqillStack.cs" />
+    <Compile Include="TranqillMaster.cs" />
+    <Compile Include="TranqillStack.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

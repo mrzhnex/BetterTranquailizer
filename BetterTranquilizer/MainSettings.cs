@@ -2,7 +2,7 @@
 
 namespace BetterTranquilizer
 {
-    public class MainSetting : Plugin
+    public class MainSettings : Plugin
     {
         public override string getName => "BetterTranquilizer";
         private SetEvents setEvents;

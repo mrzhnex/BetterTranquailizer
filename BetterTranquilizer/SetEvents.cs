@@ -1,7 +1,6 @@
 ﻿using Dissonance.Integrations.MirrorIgnorance;
 using EXILED;
 using EXILED.Extensions;
-using EXILED.Patches;
 using Mirror;
 using RemoteAdmin;
 using System.Collections.Generic;
@@ -194,17 +193,17 @@ namespace BetterTranquilizer
                     GameObject gameobj = ev.Target;
                     if (ev.Target.GetPlayer().GetRole() == RoleType.Scp049 || ev.Target.GetPlayer().GetRole() == RoleType.Scp93953 || ev.Target.GetPlayer().GetRole() == RoleType.Scp93989)
                     {
-                        if (gameobj.GetComponent<tranqillStack>() == null)
+                        if (gameobj.GetComponent<TranqillStack>() == null)
                         {
-                            gameobj.AddComponent<tranqillStack>();
-                            gameobj.GetComponent<tranqillStack>().count = gameobj.GetComponent<tranqillStack>().count + 1;
+                            gameobj.AddComponent<TranqillStack>();
+                            gameobj.GetComponent<TranqillStack>().count = gameobj.GetComponent<TranqillStack>().count + 1;
                         }
                         else
                         {
-                            gameobj.GetComponent<tranqillStack>().count = gameobj.GetComponent<tranqillStack>().count + 1;
-                            if (gameobj.GetComponent<tranqillStack>().count >= Global.maxTranqillOnSCP)
+                            gameobj.GetComponent<TranqillStack>().count = gameobj.GetComponent<TranqillStack>().count + 1;
+                            if (gameobj.GetComponent<TranqillStack>().count >= Global.maxTranqillOnSCP)
                             {
-                                UnityEngine.Object.Destroy(gameobj.GetComponent<tranqillStack>());
+                                UnityEngine.Object.Destroy(gameobj.GetComponent<TranqillStack>());
 
                                 CharacterClassManager ccm = gameobj.GetComponent<CharacterClassManager>();
                                 PlayerStats.HitInfo newInfo = new PlayerStats.HitInfo(1f, ev.Shooter.nicknameSync.Network_myNickSync, DamageTypes.None, ev.Target.GetPlayer().GetPlayerId());

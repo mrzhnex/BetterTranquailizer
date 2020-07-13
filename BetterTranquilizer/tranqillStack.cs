@@ -2,7 +2,7 @@
 
 namespace BetterTranquilizer
 {
-    class tranqillStack : MonoBehaviour
+    public class TranqillStack : MonoBehaviour
     {
         public int count = 0;
     }
