@@ -46,7 +46,7 @@ namespace BetterTranquilizer
             {
                 if (p.gameObject.GetComponent<TranqillMaster>() != null)
                 {
-                    UnityEngine.Object.Destroy(p.gameObject.GetComponent<TranqillMaster>());
+                    Object.Destroy(p.gameObject.GetComponent<TranqillMaster>());
                     bool silent = false;
                     if (args.Length > 3 && args[3] != null)
                     {
@@ -58,7 +58,7 @@ namespace BetterTranquilizer
                     if (!silent)
                     {
                         p.ClearBroadcasts();
-                        p.Broadcast(10, "<color=#228b22>*вы обнаружили, что у вас закончились транквилизаторы*", true);
+                        p.Broadcast(10, "<color=#228b22>*вы обнаружили, что у вас закончились транквилизаторы*</color>", true);
                     }
 
                     ev.Sender.RAMessage(p.nicknameSync.Network_myNickSync + " remove from <tranqillMaster>");
@@ -73,7 +73,6 @@ namespace BetterTranquilizer
 
             if (args.Length < 4)
             {
-                Log.Info("catch tut");
                 ev.Sender.RAMessage("Out of arguments. Usage: " + GetUsage());
                 return;
             }
