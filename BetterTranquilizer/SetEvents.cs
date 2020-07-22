@@ -29,6 +29,7 @@ namespace BetterTranquilizer
             string[] args = ev.Command.Split(' ');
             if (args.Length > 0 && args[0] != "bt")
                 return;
+            ev.Allow = false;
             if (args.Length < 3)
             {
                 ev.Sender.RAMessage("Out of arguments. Usage: " + GetUsage());
@@ -121,7 +122,7 @@ namespace BetterTranquilizer
             return;
         }
 
-        internal void OnSetClass(EXILED.SetClassEvent ev)
+        internal void OnSetClass(SetClassEvent ev)
         {
             if (ev.Player.gameObject.GetComponent<BadgeComponent>() != null)
             {
@@ -129,7 +130,7 @@ namespace BetterTranquilizer
             }
         }
 
-        public void OnPlayerHurt(ref EXILED.PlayerHurtEvent ev)
+        public void OnPlayerHurt(ref PlayerHurtEvent ev)
         {
             if (ev.Player.gameObject.GetComponent<TranqillMaster>() != null)
             {
@@ -257,7 +258,7 @@ namespace BetterTranquilizer
             }
         }
 
-        public void OnCallCommand(EXILED.ConsoleCommandEvent ev)
+        public void OnCallCommand(ConsoleCommandEvent ev)
         {
             if (!Global.can_use_commands)
             {
@@ -331,7 +332,7 @@ namespace BetterTranquilizer
             Global.can_use_commands = false;
         }
 
-        public void On106CreatePortal(EXILED.Scp106CreatedPortalEvent ev)
+        public void On106CreatePortal(Scp106CreatedPortalEvent ev)
         {
             scpCustomLock = !scpCustomLock;
             if (scpCustomLock)
@@ -360,7 +361,7 @@ namespace BetterTranquilizer
             {
                 if (ev.Player.gameObject.GetComponent<BadgeComponent>() != null)
                 {
-                    UnityEngine.Object.Destroy(ev.Player.gameObject.GetComponent<BadgeComponent>());
+                    Object.Destroy(ev.Player.gameObject.GetComponent<BadgeComponent>());
                 }
             }
         }
