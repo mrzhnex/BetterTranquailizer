@@ -1,43 +1,48 @@
-﻿using EXILED;
+﻿using Exiled.API.Features;
 
 namespace BetterTranquilizer
 {
-    public class MainSettings : Plugin
+    public class MainSettings : Plugin<Config>
     {
-        public override string getName => nameof(BetterTranquilizer);
+        public override string Name => nameof(BetterTranquilizer);
         public SetEvents SetEvents { get; set; }
         
-        public override void OnEnable()
+        public override void OnEnabled()
         {
+            try
+            {
+                Global.IsFullRp = Config.IsFullRp;
+            }
+            catch (System.Exception ex)
+            {
+                Log.Info("Catch an exception while getting boolean value from config file: " + ex.Message);
+                Global.IsFullRp = false;
+            }
             SetEvents = new SetEvents();
-            Events.RoundStartEvent += SetEvents.OnRoundStart;
-            Events.PlayerHurtEvent += SetEvents.OnPlayerHurt;
-            Events.ShootEvent += SetEvents.OnShoot;
-            Events.ConsoleCommandEvent += SetEvents.OnCallCommand;
-            Events.Scp106CreatedPortalEvent += SetEvents.On106CreatePortal;
-            Events.PlayerHandcuffedEvent += SetEvents.OnHandcuffed;
-            Events.PlayerDeathEvent += SetEvents.OnPlayerDie;
-            Events.RemoteAdminCommandEvent += SetEvents.BTCommand;
-            Events.SetClassEvent += SetEvents.OnSetClass;
-            Events.WaitingForPlayersEvent += SetEvents.OnWaitingForPlayers;
-            Log.Info(getName + " on");
+            Exiled.Events.Handlers.Server.RoundStarted += SetEvents.OnRoundStarted;
+            Exiled.Events.Handlers.Player.Hurting += SetEvents.OnHurting;
+            Exiled.Events.Handlers.Player.Shot += SetEvents.OnShot;
+            Exiled.Events.Handlers.Server.SendingConsoleCommand += SetEvents.OnSendingConsoleCommand;
+            Exiled.Events.Handlers.Scp106.CreatingPortal += SetEvents.OnCreatingPortal;
+            Exiled.Events.Handlers.Player.Handcuffing += SetEvents.OnHandcuffing;
+            Exiled.Events.Handlers.Player.ChangingRole += SetEvents.OnChangingRole;
+            Exiled.Events.Handlers.Server.SendingRemoteAdminCommand += SetEvents.OnRemoteAdminCommandEvent;
+            Exiled.Events.Handlers.Server.WaitingForPlayers += SetEvents.OnWaitingForPlayers;
+            Log.Info(Name + " on");
         }
 
-        public override void OnDisable()
+        public override void OnDisabled()
         {
-            Events.RoundStartEvent -= SetEvents.OnRoundStart;
-            Events.PlayerHurtEvent -= SetEvents.OnPlayerHurt;
-            Events.ShootEvent -= SetEvents.OnShoot;
-            Events.ConsoleCommandEvent -= SetEvents.OnCallCommand;
-            Events.Scp106CreatedPortalEvent -= SetEvents.On106CreatePortal;
-            Events.PlayerHandcuffedEvent -= SetEvents.OnHandcuffed;
-            Events.PlayerDeathEvent -= SetEvents.OnPlayerDie;
-            Events.RemoteAdminCommandEvent -= SetEvents.BTCommand;
-            Events.SetClassEvent -= SetEvents.OnSetClass;
-            Events.WaitingForPlayersEvent -= SetEvents.OnWaitingForPlayers;
-            Log.Info(getName + " off");
+            Exiled.Events.Handlers.Server.RoundStarted -= SetEvents.OnRoundStarted;
+            Exiled.Events.Handlers.Player.Hurting -= SetEvents.OnHurting;
+            Exiled.Events.Handlers.Player.Shot -= SetEvents.OnShot;
+            Exiled.Events.Handlers.Server.SendingConsoleCommand -= SetEvents.OnSendingConsoleCommand;
+            Exiled.Events.Handlers.Scp106.CreatingPortal -= SetEvents.OnCreatingPortal;
+            Exiled.Events.Handlers.Player.Handcuffing -= SetEvents.OnHandcuffing;
+            Exiled.Events.Handlers.Player.ChangingRole -= SetEvents.OnChangingRole;
+            Exiled.Events.Handlers.Server.SendingRemoteAdminCommand -= SetEvents.OnRemoteAdminCommandEvent;
+            Exiled.Events.Handlers.Server.WaitingForPlayers -= SetEvents.OnWaitingForPlayers;
+            Log.Info(Name + " off");
         }
-
-        public override void OnReload() { }
     }
 }

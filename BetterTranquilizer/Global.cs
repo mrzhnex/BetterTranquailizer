@@ -1,6 +1,4 @@
-﻿using EXILED;
-
-namespace BetterTranquilizer
+﻿namespace BetterTranquilizer
 {
     public class Global
     {
@@ -10,7 +8,6 @@ namespace BetterTranquilizer
 
         public static float distance_to_pickup = 2.5f;
 
-        //rework study
         public static string _istoolongtopickup = "Поблизости нет тел";
         public static string _successpickup = "Вы подняли тело ";
         public static string _successdrop = "Вы бросили тело ";

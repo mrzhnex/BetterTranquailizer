@@ -1,4 +1,4 @@
-﻿using EXILED.Extensions;
+﻿using Exiled.API.Features;
 using Mirror;
 using UnityEngine;
 
@@ -26,16 +26,15 @@ namespace BetterTranquilizer
                     
                     if (Global.IsFullRp)
                     {
-                        if (new ItemType[] { ItemType.GunE11SR, ItemType.GunLogicer, ItemType.GunMP7, ItemType.GunProject90 }.Contains(Player.GetPlayer(gameObject).GetCurrentItem().id))
+                        if (new ItemType[] { ItemType.GunE11SR, ItemType.GunLogicer, ItemType.GunMP7, ItemType.GunProject90 }.Contains(Player.Get(gameObject).CurrentItem.id))
                         {
-                            for (int i = 0; i < Player.GetPlayer(gameObject).inventory.items.Count; i++)
+                            for (int i = 0; i < Player.Get(gameObject).Inventory.items.Count; i++)
                             {
-                                if (Player.GetPlayer(gameObject).inventory.items[i] == Player.GetPlayer(gameObject).GetCurrentItem())
+                                if (Player.Get(gameObject).Inventory.items[i] == Player.Get(gameObject).CurrentItem)
                                 {
-                                    Map.SpawnItem(Player.GetPlayer(gameObject).GetCurrentItem().id, Player.GetPlayer(gameObject).GetCurrentItem().durability, transform.position, transform.rotation, Player.GetPlayer(gameObject).GetCurrentItem().modSight, Player.GetPlayer(gameObject).GetCurrentItem().modBarrel, Player.GetPlayer(gameObject).GetCurrentItem().modOther);
-                                    Player.GetPlayer(gameObject).inventory.items.Remove(Player.GetPlayer(gameObject).GetCurrentItem());
-                                    Player.GetPlayer(gameObject).ClearBroadcasts();
-                                    Player.GetPlayer(gameObject).Broadcast(7, "Вы уронили оружие, так как вы несли тело", true);
+                                    Player.Get(gameObject).DropItem(Player.Get(gameObject).Inventory.items[i]);
+                                    Player.Get(gameObject).ClearBroadcasts();
+                                    Player.Get(gameObject).Broadcast(7, "Вы уронили оружие, так как вы несли тело", Broadcast.BroadcastFlags.Normal);
                                     break;
                                 }
                             }
@@ -43,16 +42,15 @@ namespace BetterTranquilizer
                     }
                     else
                     {
-                        if (Player.GetPlayer(gameObject).GetCurrentItem().id != ItemType.None)
+                        if (Player.Get(gameObject).CurrentItem.id != ItemType.None)
                         {
-                            for (int i = 0; i < Player.GetPlayer(gameObject).inventory.items.Count; i++)
+                            for (int i = 0; i < Player.Get(gameObject).Inventory.items.Count; i++)
                             {
-                                if (Player.GetPlayer(gameObject).inventory.items[i] == Player.GetPlayer(gameObject).GetCurrentItem())
+                                if (Player.Get(gameObject).Inventory.items[i] == Player.Get(gameObject).CurrentItem)
                                 {
-                                    Map.SpawnItem(Player.GetPlayer(gameObject).GetCurrentItem().id, Player.GetPlayer(gameObject).GetCurrentItem().durability, transform.position, transform.rotation, Player.GetPlayer(gameObject).GetCurrentItem().modSight, Player.GetPlayer(gameObject).GetCurrentItem().modBarrel, Player.GetPlayer(gameObject).GetCurrentItem().modOther);
-                                    Player.GetPlayer(gameObject).inventory.items.Remove(Player.GetPlayer(gameObject).GetCurrentItem());
-                                    Player.GetPlayer(gameObject).ClearBroadcasts();
-                                    Player.GetPlayer(gameObject).Broadcast(7, "Вы уронили предмет, так как вы несли тело", true);
+                                    Player.Get(gameObject).DropItem(Player.Get(gameObject).Inventory.items[i]);
+                                    Player.Get(gameObject).ClearBroadcasts();
+                                    Player.Get(gameObject).Broadcast(7, "Вы уронили предмет, так как вы несли тело", Broadcast.BroadcastFlags.Normal);
                                     break;
                                 }
                             }
