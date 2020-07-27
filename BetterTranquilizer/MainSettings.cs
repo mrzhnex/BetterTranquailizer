@@ -21,7 +21,7 @@ namespace BetterTranquilizer
             SetEvents = new SetEvents();
             Exiled.Events.Handlers.Server.RoundStarted += SetEvents.OnRoundStarted;
             Exiled.Events.Handlers.Player.Hurting += SetEvents.OnHurting;
-            Exiled.Events.Handlers.Player.Shot += SetEvents.OnShot;
+            Exiled.Events.Handlers.Player.Shooting += SetEvents.OnShooting;
             Exiled.Events.Handlers.Server.SendingConsoleCommand += SetEvents.OnSendingConsoleCommand;
             Exiled.Events.Handlers.Scp106.CreatingPortal += SetEvents.OnCreatingPortal;
             Exiled.Events.Handlers.Player.Handcuffing += SetEvents.OnHandcuffing;
@@ -35,7 +35,7 @@ namespace BetterTranquilizer
         {
             Exiled.Events.Handlers.Server.RoundStarted -= SetEvents.OnRoundStarted;
             Exiled.Events.Handlers.Player.Hurting -= SetEvents.OnHurting;
-            Exiled.Events.Handlers.Player.Shot -= SetEvents.OnShot;
+            Exiled.Events.Handlers.Player.Shooting -= SetEvents.OnShooting;
             Exiled.Events.Handlers.Server.SendingConsoleCommand -= SetEvents.OnSendingConsoleCommand;
             Exiled.Events.Handlers.Scp106.CreatingPortal -= SetEvents.OnCreatingPortal;
             Exiled.Events.Handlers.Player.Handcuffing -= SetEvents.OnHandcuffing;

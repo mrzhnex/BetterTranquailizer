@@ -18,7 +18,7 @@ namespace BetterTranquilizer
             Global.can_use_commands = true;
         }
 
-        internal void OnShot(ShotEventArgs ev)
+        internal void OnShooting(ShootingEventArgs ev)
         {
             if (ev.Shooter.GameObject.GetComponent<TranqillMaster>() != null)
             {
